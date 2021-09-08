@@ -194,13 +194,13 @@ async function deploy(helm) {
   const release = releaseName(appName, track);
   const namespace = getInput("namespace", required);
   const chart = chartName(getInput("chart", required));
-  const chartVersion = getInput("chart_version");
+  const chartVersion = getInput("chart-version");
   const values = getValues(getInput("values"));
   const task = getInput("task");
   const version = getInput("version");
   const valueFiles = getValueFiles(getInput("value_files"));
   const removeCanary = getInput("remove_canary");
-  const timeout = getInput("timeout");
+  const timeout = getInput("timeout") || "30m";
   const dryRun = core.getInput("dry-run");
   const secrets = getSecrets(core.getInput("secrets"));
   const atomic = getInput("atomic") || true;

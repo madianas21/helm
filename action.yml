@@ -46,6 +46,24 @@ inputs:
   version:
     description: Version of the app, usually commit sha works here.
     required: false
+  chart-version:
+    description: Version of the chart
+    required: false
+  repo:
+    description: Custom repo URL
+    required: false
+  repo-alias:
+    description: Custom repo alias
+    required: false
+  repo-username:
+    description: Custom repo username
+    required: false
+  repo-password:
+    description: Custom repo password
+    required: false
+  timeout:
+    description: Time to wait for any individual Kubernetes operation
+    required: false
 runs:
   using: docker
   image: Dockerfile

@@ -204,7 +204,6 @@ async function deploy(helm) {
   const dryRun = core.getInput("dry-run");
   const secrets = getSecrets(core.getInput("secrets"));
   const atomic = getInput("atomic") || true;
-  const extraArgs = getInput("extra-args");
 
   core.debug(`param: track = "${track}"`);
   core.debug(`param: release = "${release}"`);
@@ -221,7 +220,6 @@ async function deploy(helm) {
   core.debug(`param: removeCanary = ${removeCanary}`);
   core.debug(`param: timeout = "${timeout}"`);
   core.debug(`param: atomic = "${atomic}"`);
-  core.debug(`param: extraArgs = "${extraArgs}"`);
 
   // Setup command options and arguments.
   let args = [
@@ -230,6 +228,7 @@ async function deploy(helm) {
     chart,
     "--install",
     "--wait",
+    "--wait-for-jobs",
     `--namespace=${namespace}`,
   ];
 
@@ -238,7 +237,6 @@ async function deploy(helm) {
   if (version) args.push(`--set=app.version=${version}`);
   if (chartVersion) args.push(`--version=${chartVersion}`);
   if (timeout) args.push(`--timeout=${timeout}`);
-  if (extraArgs) args.push(`${extraArgs}`);
 
   valueFiles.forEach(f => args.push(`--values=${f}`));
 

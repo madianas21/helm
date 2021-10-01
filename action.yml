@@ -64,6 +64,9 @@ inputs:
   timeout:
     description: Time to wait for any individual Kubernetes operation
     required: false
+  extra-agrs:
+    description: Extra ARGS for the helm command
+    required: false
 runs:
   using: docker
   image: Dockerfile
